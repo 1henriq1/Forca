@@ -9,16 +9,43 @@ class Jogo {
 
     _processaChute(chute){
         //if(this._palavraSecreta.includes(chute)) {
-
+        let acertou = false;
         let re = new RegExp(chute, 'gi');
-        //;if(re.exec(this._palavraSecreta)){
-        console.log(re.exec(this._palavraSecreta));
-            //this._lacunas[this._palavraSecreta.indexOf(chute)] = chute;
-        //}
-        //else {
-        //    console.log('errô');
-        //    this._sprite.nextFrame();
-        //}
+        let xp;
+
+        while (xp = re.exec(this._palavraSecreta)){
+            acertou = true;
+            this._lacunas[xp.index] = chute;
+        }
+        if(!acertou){
+            this._sprite.nextFrame();
+        }
+
+    }
+
+    _ganhou(){
+
+        if((this._palavraSecreta == this._lacunas.join('')) && this._palavraSecreta.length > 0)
+            return true;
+        else
+            return false;
+    }
+
+    _perdeu(){
+
+        return this._sprite.isFinished;
+    }
+
+    _ganhouOuPerdeu(){
+        
+        return ganhou() || perdeu();
+    }
+
+    _reinicia(){
+        this._sprite.reset();
+        this._palavraSecreta = '';
+        this._lacunas = [];
+        this._etapa = 1;
     }
 
     set palavraSecreta(palavra){
@@ -49,10 +76,4 @@ class Jogo {
         this._etapa++;
     }
 
-    reset(){
-
-        this._palavraSecreta = '';
-        this._lacunas = [];
-        this._etapa = 1;
-    }
 }
