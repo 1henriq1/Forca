@@ -27,24 +27,15 @@
     </div>
     <script src="js/Jogo.js"></script>
     <script src="js/Sprite.js"></script>
+    <script src="js/Controller.js"></script>
     <script src="js/jquery.min.js"></script>
     <script>
 
 
         let sprite = new Sprite('.sprite');
         let jogo = new Jogo(sprite);
-        jogo.palavraSecreta = 'calopsita';
-        //jogo._processaChute('f');
-        jogo._processaChute('c');
-        jogo._processaChute('a');
-        jogo._processaChute('l');
-        jogo._processaChute('o');
-        jogo._processaChute('p');
-        jogo._processaChute('s');
-        jogo._processaChute('i');
-        jogo._processaChute('t');
-        //console.log(jogo.lacunas);
-        //jogo._processaChute('x');
+        let controller = new Controller(jogo);
+        controller.inicia();
     </script>
 
 

@@ -37,8 +37,8 @@ class Jogo {
     }
 
     _ganhouOuPerdeu(){
-        
-        return ganhou() || perdeu();
+
+        return this._ganhou() || this._perdeu();
     }
 
     _reinicia(){
