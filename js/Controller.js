@@ -39,25 +39,29 @@ class Controller{
         jogo.palavraSecreta = texto;
     }
 
+    reinicia(){
+
+        this._jogo._reinicia();
+        this.deletaLacunas();
+        this._entrada.placeholder = "Palavra Secreta";
+    }
+
     leChute(chute){
+
         this._jogo._processaChute(chute);
         this.exibeLacunas();
         this._entrada.value = '';
 
         if(this._jogo._ganhouOuPerdeu()){
-
             setTimeout(() => {
                 if(this._jogo._ganhou()){
                     alert('Voce ganhou!');
-                    this._jogo._reinicia();
                 }
                 else if(this._jogo._perdeu()){
-                    alert('Voce perdeu!');
-                    this._jogo._reinicia();
+                    alert('Voce perdeu');
                 }
+                this.reinicia();
             }, 500);
-            this._entrada.placeholder = "Palavra Secreta";
-            //this.deletaLacunas();
         }
     }
 
